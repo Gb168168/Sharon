@@ -7,12 +7,17 @@
   <title>Sharon 行事曆</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="viewer.css">
+  <link rel="stylesheet" href="auth.css">
 </head>
 <body>
   <header class="topbar">
     <div class="brand"><span class="brand-icon">S</span><div><strong>Sharon 行事曆</strong><small>圖片與檔案都能放</small></div></div>
-    <button class="primary" id="addBtn">＋ 新增排程</button>
+    <div class="header-actions"><span id="authUser" hidden></span><button class="ghost" id="logoutBtn" hidden>登出</button><button class="primary" id="addBtn">＋ 新增排程</button></div>
   </header>
+
+  <section id="loginGate" class="login-gate">
+    <div class="login-card"><span class="google-mark">G</span><h1>登入 Sharon 行事曆</h1><p>使用同一個 Google 帳號，即可在手機與電腦同步行程。</p><button class="google-btn" id="loginBtn">使用 Google 帳號登入</button><small id="loginStatus">正在確認登入狀態⋯</small></div>
+  </section>
 
   <main>
     <section class="toolbar">
@@ -76,6 +81,6 @@
     <p id="previewName"></p>
   </dialog>
   <div id="toast" class="toast"></div>
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
