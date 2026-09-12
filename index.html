@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#2563eb">
   <title>Sharon 行事曆</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="viewer.css">
 </head>
 <body>
   <header class="topbar">
@@ -68,6 +69,11 @@
     <div class="modal-head"><div><small>當日排程</small><h2 id="dayTitle"></h2></div><button class="close" data-day-close>×</button></div>
     <div id="dayEvents" class="day-events"></div>
     <footer class="modal-actions"><span></span><button class="primary" id="addForDay">＋ 新增這天排程</button></footer>
+  </dialog>
+  <dialog id="imageDialog" class="image-viewer">
+    <button type="button" class="image-close" id="imageClose" aria-label="關閉圖片">×</button>
+    <img id="previewImage" alt="附件圖片預覽">
+    <p id="previewName"></p>
   </dialog>
   <div id="toast" class="toast"></div>
   <script src="app.js"></script>
