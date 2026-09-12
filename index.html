@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#2563eb">
+  <title>Sharon 行事曆</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon">S</span><div><strong>Sharon 行事曆</strong><small>圖片與檔案都能放</small></div></div>
+    <button class="primary" id="addBtn">＋ 新增排程</button>
+  </header>
+
+  <main>
+    <section class="toolbar">
+      <div class="month-nav">
+        <button class="icon-btn" id="prevBtn" aria-label="上個月">‹</button>
+        <button class="month-title" id="monthTitle"></button>
+        <button class="icon-btn" id="nextBtn" aria-label="下個月">›</button>
+        <button class="ghost today-btn" id="todayBtn">今天</button>
+      </div>
+      <div class="tools">
+        <label class="search"><span>⌕</span><input id="searchInput" placeholder="搜尋標題、內容或標籤"></label>
+        <select id="filterSelect"><option value="">全部標籤</option></select>
+      </div>
+    </section>
+
+    <section class="calendar-shell">
+      <div class="weekdays"><span class="sun">日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span class="sat">六</span></div>
+      <div class="calendar" id="calendar"></div>
+    </section>
+  </main>
+
+  <dialog id="eventDialog" class="modal">
+    <form method="dialog" id="eventForm">
+      <div class="modal-head"><div><small id="modalKicker">新增</small><h2 id="modalTitle">新增排程</h2></div><button type="button" class="close" data-close>×</button></div>
+      <div class="modal-body">
+        <input type="hidden" id="eventId">
+        <div class="three-cols">
+          <label>顏色<input id="color" type="color" value="#3b82f6"></label>
+          <label>標籤名稱<input id="tag" maxlength="30" placeholder="例如：工作"></label>
+          <label>類別<select id="category"><option>一般</option><option>工作</option><option>會議</option><option>提醒</option><option>私人</option></select></label>
+        </div>
+        <label>標題 <b>*</b><input id="title" required maxlength="100" placeholder="輸入排程標題"></label>
+        <label>內容<textarea id="content" rows="4" placeholder="輸入排程內容"></textarea></label>
+        <div class="two-cols">
+          <label>開始時間 <b>*</b><input id="start" type="datetime-local" required></label>
+          <label>結束時間（選填）<input id="end" type="datetime-local"></label>
+        </div>
+        <div class="two-cols">
+          <label>重複提醒<select id="repeat"><option value="none">不重複</option><option value="daily">每天</option><option value="weekly">每週</option><option value="monthly">每月</option><option value="custom">自訂天數</option></select></label>
+          <label id="intervalWrap" hidden>每隔幾天<input id="interval" type="number" min="1" max="365" value="1"></label>
+        </div>
+        <section class="upload-box">
+          <div><strong>圖片與檔案</strong><small>可一次選擇多個檔案，單檔上限 10MB</small></div>
+          <label class="upload-btn">＋ 選擇檔案<input id="fileInput" type="file" multiple hidden></label>
+          <div id="pendingFiles" class="file-list"></div>
+          <div id="savedFiles" class="file-list"></div>
+        </section>
+      </div>
+      <footer class="modal-actions"><button type="button" class="danger" id="deleteBtn" hidden>刪除</button><span></span><button type="button" class="ghost" data-close>取消</button><button class="primary" value="default">儲存</button></footer>
+    </form>
+  </dialog>
+
+  <dialog id="dayDialog" class="modal day-modal">
+    <div class="modal-head"><div><small>當日排程</small><h2 id="dayTitle"></h2></div><button class="close" data-day-close>×</button></div>
+    <div id="dayEvents" class="day-events"></div>
+    <footer class="modal-actions"><span></span><button class="primary" id="addForDay">＋ 新增這天排程</button></footer>
+  </dialog>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
